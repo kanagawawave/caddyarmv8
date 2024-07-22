@@ -1,5 +1,4 @@
-# Description: Dockerfile for building caddy with plugins
-FROM arm64v8/caddy:builder-alpine AS builder
+FROM --platform=linux/arm64/v8 caddy:builder-alpine  AS builder
 
 # Install additional packages if needed (check xcaddy requirements)
 RUN apk add --no-cache
@@ -10,7 +9,7 @@ RUN xcaddy build \
   --with github.com/caddy-dns/cloudflare
 
 # Build final image
-FROM arm64v8/caddy:alpine
+FROM caddy:latest
 
 # Copy caddy from builder
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
