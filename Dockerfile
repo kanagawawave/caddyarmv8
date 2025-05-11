@@ -5,8 +5,7 @@ RUN apk add --no-cache
 
 # Build caddy with plugins
 RUN xcaddy build \
-  --with github.com/mholt/caddy-l4 \
-  --with github.com/caddy-dns/cloudflare
+  --with github.com/mholt/caddy-l4
 
 # Build final image
 FROM caddy:latest
